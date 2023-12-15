@@ -1,60 +1,62 @@
 CREATE TABLE `Subscribtion` (
-  `user_id` integer,
+  `id` integer PRIMARY KEY,
+  `user_id` integer NOT NULL,
   `subscriber_id` integer
 );
 
 CREATE TABLE `User` (
   `id` integer PRIMARY KEY,
-  `username` varchar(255),
-  `email` varchar(255),
+  `username` varchar(255) UNIQUE NOT NULL,
+  `email` varchar(255) UNIQUE NOT NULL,
   `avatar_url` varchar(255),
-  `first_name` varchar(255),
-  `last_name` varchar(255),
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
   `blog_description` varchar(255),
-  `role_id` integer
+  `role_id` integer NOT NULL
 );
 
 CREATE TABLE `Role` (
   `id` integer PRIMARY KEY,
-  `name` varchar(255)
+  `name` varchar(255) NOT NULL
 );
 
 CREATE TABLE `UserPost` (
   `id` integer PRIMARY KEY,
-  `user_id` integer,
-  `post_id` integer
+  `user_id` integer NOT NULL,
+  `post_id` integer NOT NULL
 );
 
 CREATE TABLE `Favourite` (
   `id` integer PRIMARY KEY,
-  `user_id` integer,
-  `post_id` integer
+  `user_id` integer NOT NULL,
+  `post_id` integer NOT NULL
 );
 
 CREATE TABLE `Post` (
   `id` integer PRIMARY KEY,
-  `title` varchar(255),
-  `user_id` integer,
-  `status` varchar(255)
+  `title` varchar(255) NOT NULL,
+  `likes` integer NOT NULL,
+  `views` integer NOT NULL
 );
 
 CREATE TABLE `Ingredient` (
   `id` integer PRIMARY KEY,
-  `name` varchar(255),
-  `post_id` integer,
-  `measurement_id` integer,
-  `quantity` integer
+  `name` varchar(255) NOT NULL,
+  `post_id` integer NOT NULL,
+  `measurement_id` integer NOT NULL,
+  `quantity` integer NOT NULL
 );
 
 CREATE TABLE `MeasurmentType` (
   `id` integer PRIMARY KEY,
-  `name` varchar(255)
+  `name` varchar(255) NOT NULL,
+  `small_name` varchar(10) NOT NULL
 );
 
 CREATE TABLE `Step` (
   `id` integer PRIMARY KEY,
-  `post_id` integer,
-  `number` integer,
+  `post_id` integer NOT NULL,
+  `number` integer NOT NULL,
   `body` varchar(255),
   `image_url` varchar(255)
 );
