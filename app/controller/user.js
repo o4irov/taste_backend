@@ -29,6 +29,9 @@ exports.update = (req, res) => {
                 last_name: req.body.last_name ?? user.last_name,
                 blog_description: req.body.blog_description ?? user.blog_description,
                 role_id: req.body.role_id ?? user.role_id,
+                tg: req.body.tg ?? user.tg,
+                youtube: req.body.youtube ?? user.youtube,
+                vk: req.body.vk ?? user.vk,
             },
                 {
                     where: {

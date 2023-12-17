@@ -4,8 +4,9 @@ module.exports = (app) => {
 
     const recipe = require('../controller/recipe');
 
-    // Получение всех групп
     app.get('/api/posts', recipe.findAll);
+
+    app.get('/api/userPosts/:user_id', recipe.userPosts);
 
     app.post('/api/addPost', [authJwt.verifyToken], recipe.createPost);
 

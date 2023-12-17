@@ -73,6 +73,41 @@ exports.findAll = async (req, res) => {
     globalFunctions.sendResult(res, JSON.stringify(formattedResult));
 };
 
+exports.userPosts = (req, res) => {
+    UserPost.findAll({
+        where: {
+            user_id: req.params.user_id,
+        },
+        include: [
+            {
+                model: Post,
+                attributes: ["id", "title", "title_image_url", "likes", "views", "time", "portion"],
+                include: [
+                    {
+                        model: Ingredient,
+                        attributes: ['id', 'name', 'quantity'],
+                        include: [
+                            {
+                                model: MeasurmentType,
+                                attributes: ['name', 'small_name'],
+                                required: false, // Используйте false, если хотите получить записи, даже если нет соответствия в MeasurementType
+                            },
+                        ],
+                    },
+                    {
+                        model: Step,
+                        attributes: ['id', 'number', 'body', 'image_url'],
+                    },
+                ],
+            }
+        ]
+    }).then((posts) => {
+        globalFunctions.sendResult(res, posts);
+    }).catch((err) => {
+        globalFunctions.sendError(res, err);
+    });
+}
+
 exports.createPost = (req, res) => {
     Post.create({
         title: req.body.title,

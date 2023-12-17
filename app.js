@@ -33,3 +33,6 @@ recipe(app);
 
 var subscription = require('./app/route/subscription.js');
 subscription(app);
+
+var favourite = require('./app/route/favourite.js');
+favourite(app);

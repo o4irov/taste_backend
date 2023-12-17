@@ -40,5 +40,14 @@ module.exports = (sequelize, DataTypes) => {
                 key: 'id',
             },
         },
+        tg: {
+            type: DataTypes.STRING,
+        },
+        youtube: {
+            type: DataTypes.STRING,
+        },
+        vk: {
+            type: DataTypes.STRING,
+        }
     });
 };
