@@ -1,6 +1,6 @@
-import Sequelize from 'sequelize';
+var Sequelize = require('sequelize');
 // Подключение моделей
-import { initModels } from '../model/init-models';
+var init_models = require('../model/init_models');
 
 var dbProperties = {
     database: 'taste', // название базы данных
@@ -38,9 +38,9 @@ var sequelize = new Sequelize(
     }
 );
 
-var db = initModels(sequelize);
+var db = init_models.initModels(sequelize);
 
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-export default db;
+module.exports = db;

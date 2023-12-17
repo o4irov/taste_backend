@@ -1,4 +1,4 @@
-export default function (sequelize, DataTypes) {
+module.exports = (sequelize, DataTypes) => {
     return sequelize.define('User', {
         id: {
             type: DataTypes.INTEGER,
@@ -8,6 +8,10 @@ export default function (sequelize, DataTypes) {
         username: {
             type: DataTypes.STRING,
             unique: true,
+            allowNull: false,
+        },
+        password: {
+            type: DataTypes.STRING,
             allowNull: false,
         },
         email: {
@@ -31,7 +35,6 @@ export default function (sequelize, DataTypes) {
         },
         role_id: {
             type: DataTypes.INTEGER,
-            allowNull: false,
             references: {
                 model: 'Role',
                 key: 'id',

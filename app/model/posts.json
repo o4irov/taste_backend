@@ -1,0 +1,29 @@
+[
+    {
+        "post": {
+            "id": "",
+            "title": "",
+            "title_image_url": "",
+            "likes": "",
+            "views": "",
+            "time": "",
+            "portion": ""
+        },
+        "ingredients": [
+            {
+                "id": "",
+                "name": "",
+                "MeasurementType.name": "",
+                "quantity": ""
+            }
+        ],
+        "steps": [
+            {
+                "id": "",
+                "number": "",
+                "body": "",
+                "image_url": ""
+            }
+        ]
+    }
+]

@@ -1,13 +1,13 @@
-import Role from './models/Role';
-import User from './models/User';
-import Subscribtion from './models/Subscribtion';
-import Post from './models/Post';
-import UserPost from './models/UserPost';
-import Favourite from './models/Favourite';
-import Ingredient from './models/Ingredient';
-import MeasurmentType from './models/MeasurmentType';
-import Step from './models/Step';
-import { DataTypes } from 'sequelize';
+const Role = require('./role');
+const User = require('./user');
+const Subscribtion = require('./subscription');
+const Post = require('./post');
+const UserPost = require('./user_post');
+const Favourite = require('./favourite');
+const Ingredient = require('./ingredient');
+const MeasurmentType = require('./measurement_type');
+const Step = require('./step');
+const { DataTypes } = require('sequelize');
 
 function initModels(sequelize) {
     var role = Role(sequelize, DataTypes);
@@ -20,11 +20,15 @@ function initModels(sequelize) {
     var measurmentType = MeasurmentType(sequelize, DataTypes);
     var step = Step(sequelize, DataTypes);
 
+    post.hasMany(ingredient, { foreignKey: 'post_id' });
+    post.hasMany(step, { foreignKey: 'post_id' });
+
     role.hasOne(user, { foreignKey: 'role_id' });
+
     user.belongsTo(role, { foreignKey: 'role_id' });
 
     subscription.belongsTo(user, { foreignKey: 'user_id' });
-    subscription.belongsTo(User, { foreignKey: 'subscriber_id' });
+    subscription.belongsTo(user, { foreignKey: 'subscriber_id' });
 
     userPost.belongsTo(user, { foreignKey: 'user_id' });
     userPost.belongsTo(post, { foreignKey: 'post_id' });
@@ -33,7 +37,7 @@ function initModels(sequelize) {
     favourite.belongsTo(post, { foreignKey: 'post_id' });
 
     ingredient.belongsTo(post, { foreignKey: 'post_id' });
-    ingredient.belongsTo(measurmentType, { foreignKey: 'measurement_id' });
+    ingredient.belongsTo(measurmentType, { foreignKey: 'measurment_id' });
 
     step.belongsTo(post, { foreignKey: 'post_id' });
 

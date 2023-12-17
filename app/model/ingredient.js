@@ -1,4 +1,4 @@
-export default function (sequelize, DataTypes) {
+module.exports = (sequelize, DataTypes) => {
     return sequelize.define('Ingredient', {
         id: {
             type: DataTypes.INTEGER,
@@ -17,7 +17,7 @@ export default function (sequelize, DataTypes) {
                 key: 'id',
             },
         },
-        measurement_id: {
+        measurment_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {

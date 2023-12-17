@@ -1,4 +1,4 @@
-export default function (sequelize, DataTypes) {
+module.exports = (sequelize, DataTypes) => {
     return sequelize.define('UserPost', {
         user_id: {
             type: DataTypes.INTEGER,
